@@ -10,7 +10,7 @@ function App() {
     api.get('repositories').then(response => {
       setRepositories(response.data);
     });
-  }, [repositories]);
+  }, []);
 
   async function handleAddRepository() {
     const response = await api.post('repositories', {
@@ -26,11 +26,9 @@ function App() {
     console.log(id);
     await api.delete(`repositories/${id}`)
 
-    setRepositories([ ...repositories ]);
-
-    // setRepositories(repositories.filter(
-    //     repositoriy => repositoriy.id != id
-    // ))
+    setRepositories(repositories.filter(
+        repositoriy => repositoriy.id != id
+    ))
   }
 
   return (
